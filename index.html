@@ -68,55 +68,55 @@
             <p class="section-subtitle">Las zapatillas más populares de nuestra colección</p>
         </div>
         <div class="product-slider">
-            <div class="product-item">
+            <a href="catalogo.html#nike2000" class="product-item">
                 <div class="product-badge">Popular</div>
                 <img src="Nike2000.jpeg" alt="Nike 2000 F" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Nike 2000 F</h3>
                     <p class="product-price">$320.000</p>
                 </div>
-            </div>
+            </a>
             
-            <div class="product-item">
+            <a href="catalogo.html#pumanitro" class="product-item">
                 <img src="PumaNitro.jpeg" alt="Puma Nitro" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Puma Nitro</h3>
                     <p class="product-price">$280.000</p>
                 </div>
-            </div>
+            </a>
             
-            <div class="product-item">
+            <a href="catalogo.html#adidasyeezy" class="product-item">
                 <div class="product-badge">Nuevo</div>
                 <img src="AdidasYeezy.jpeg" alt="Adidas Yeezy" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Adidas Yeezy</h3>
                     <p class="product-price">$350.000</p>
                 </div>
-            </div>
+            </a>
             
-            <div class="product-item">
+            <a href="catalogo.html#adidascontinental" class="product-item">
                 <img src="AdidasContinental.jpeg" alt="Adidas Continental" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Adidas Continental</h3>
                     <p class="product-price">$250.000</p>
                 </div>
-            </div>
+            </a>
             
-            <div class="product-item">
+            <a href="catalogo.html#armourstorm" class="product-item">
                 <img src="ArmourStorm.jpeg" alt="Armour Storm" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Armour Storm</h3>
                     <p class="product-price">$270.000</p>
                 </div>
-            </div>
+            </a>
             
-            <div class="product-item">
+            <a href="catalogo.html#chanclasnike" class="product-item">
                 <img src="ChanclasNike.jpeg" alt="Chanclas Nike" loading="lazy">
                 <div class="product-info">
                     <h3 class="product-name">Chanclas Nike</h3>
                     <p class="product-price">$120.000</p>
                 </div>
-            </div>
+            </a>
         </div>
         <div class="section-footer">
             <a href="catalogo.html" class="btn btn-outline">Ver todos los productos</a>
@@ -145,6 +145,66 @@
         </div>
     </section>
 
+    <!-- Sección de testimonios -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">Experiencias reales con Suela C</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text">"Las zapatillas más cómodas que he usado. El estilo urbano caleño se nota en cada detalle."</p>
+                <div class="testimonial-author">
+                    <strong>Carlos M.</strong>
+                    <span>Cliente desde 2022</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★☆</div>
+                <p class="testimonial-text">"Excelente calidad y atención. Mis Nike 2000 F han durado más que cualquier otro par."</p>
+                <div class="testimonial-author">
+                    <strong>María F.</strong>
+                    <span>Cliente desde 2021</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text">"Compro regularmente en Suela C porque sé que siempre tendré productos originales y de calidad."</p>
+                <div class="testimonial-author">
+                    <strong>Andrés P.</strong>
+                    <span>Cliente frecuente</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del video -->
+    <section class="store-video">
+        <div class="section-header">
+            <h2>Nuestra Pasión en Movimiento</h2>
+            <p class="section-subtitle">Mira cómo creamos tus zapatillas favoritas</p>
+        </div>
+        <div class="video-container">
+            <iframe width="100%" height="auto" src="Reel.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h3>Únete a nuestra comunidad</h3>
+                <p>Recibe ofertas exclusivas, nuevos lanzamientos y contenido especial directamente en tu correo.</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn btn-primary">Suscribirme</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -206,22 +266,29 @@
     </footer>
 
     <!-- Carrito Flotante -->
-    <div class="carrito-flotante">
-        <div class="carrito-icono" onclick="toggleCarrito()">
-            🛒
-            <span class="carrito-contador">0</span>
+    <div class="floating-cart" id="cart-icon">
+        <div class="cart-icon" onclick="toggleCarrito()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-counter" id="cart-count">0</span>
         </div>
 
-        <div class="carrito-contenido">
-            <h3>Tu selección</h3>
-            <div class="carrito-items"></div>
-            <div class="carrito-total">
-                Total: $<span>0</span>
+        <div class="cart-content" id="cart-container">
+            <h3>Tu Carrito</h3>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount" id="cart-total">$0</span>
+                </div>
+                <button class="btn btn-checkout" id="checkout-btn" onclick="finalizarCompra()">Finalizar Compra</button>
             </div>
-            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
         </div>
     </div>
 
+    <!-- Botón volver arriba -->
+    <button class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="scripts.js"></script>
 </body>
