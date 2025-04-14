@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Suela C - Zapatillas con estilo urbano desde Cali">
-    <title>Suela C</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Bebas+Neue&display=swap">
+    <title>Suela C | Zapatillas Urbanas desde Cali</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Bebas+Neue&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./estilos_pagina_principal.css">
     <link rel="icon" href="logo.png">
 </head>
@@ -13,140 +14,305 @@
 
     <!-- Navbar -->
     <header class="navbar">
-        <div class="navbar-logo">
-            <img src="logo.png" alt="Logo de Suela C">
-            <span>Suela C</span>
-        </div>
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="logo.png" alt="Logo de Suela C">
+                <span>Suela C</span>
+            </div>
 
-        <ul class="navbar-menu" id="navbar-menu">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Catálogo</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contáctanos</a></li>
-            <li><a href="FAQ.html">FAQ</a></li>
-            <li><a href="envios.html">Política de envíos</a></li>
-            <li class="social-icons">
-                <a href="https://www.facebook.com/"><img src="facebook.png" alt="Facebook"></a>
-                <a href="https://www.instagram.com/"><img src="instagram.png" alt="Instagram"></a>
-                <a href="https://www.x.com/"><img src="X.png" alt="Twitter"></a>
-            </li>
-        </ul>
+            <ul class="navbar-menu" id="navbar-menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contáctanos</a></li>
+                <li><a href="FAQ.html">FAQ</a></li>
+                <li class="social-icons-mobile">
+                    <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.x.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+            </ul>
 
-        <div class="navbar-hamburger" id="hamburger-icon">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+            <div class="navbar-actions">
+                <div class="social-icons-desktop">
+                    <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.x.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="navbar-hamburger" id="hamburger-icon">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Banner -->
-    <section class="banner">
-        <div class="banner-content">
-            <h1>Bienvenido a Suela C</h1>
-            <p>Tu paso, tu estilo, Suela C 👟✨</p>
-            <a href="catalogo.html" class="btn">Ver Catálogo</a>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Calidad y Estilo en Cada Paso</h1>
+            <p class="hero-subtitle">Zapatillas urbanas diseñadas en Cali para el mundo</p>
+            <div class="hero-cta">
+                <a href="catalogo.html" class="btn btn-primary">Ver Catálogo</a>
+                <a href="nosotros.html" class="btn btn-secondary">Conoce Nuestra Historia</a>
+            </div>
         </div>
+        <div class="hero-overlay"></div>
     </section>
 
     <!-- Productos más vendidos -->
     <section class="best-sellers">
-        <h2>Productos Más Vendidos</h2>
+        <div class="section-header">
+            <h2>Los Más Vendidos</h2>
+            <p class="section-subtitle">Los favoritos de nuestros clientes</p>
+        </div>
         <div class="product-slider">
-            <a href="#" class="product-item">
+            <div class="product-item">
+                <div class="product-badge">Popular</div>
                 <img src="Nike2000.jpeg" alt="Nike 2000 F" loading="lazy">
-                <p class="product-name">Nike 2000 F</p>
-                <p class="product-price">$320.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
-            <a href="#" class="product-item">
+                <div class="product-info">
+                    <h3 class="product-name">Nike 2000 F</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$320.000</span>
+                        <span class="product-rating">★★★★★</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
                 <img src="PumaNitro.jpeg" alt="Puma Nitro" loading="lazy">
-                <p class="product-name">Puma Nitro</p>
-                <p class="product-price">$280.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
-            <a href="#" class="product-item">
+                <div class="product-info">
+                    <h3 class="product-name">Puma Nitro</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$280.000</span>
+                        <span class="product-rating">★★★★☆</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-badge">Nuevo</div>
                 <img src="AdidasYeezy.jpeg" alt="Adidas Yeezy" loading="lazy">
-                <p class="product-name">Adidas Yeezy</p>
-                <p class="product-price">$350.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
-            <a href="#" class="product-item">
+                <div class="product-info">
+                    <h3 class="product-name">Adidas Yeezy</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$350.000</span>
+                        <span class="product-rating">★★★★★</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
                 <img src="AdidasContinental.jpeg" alt="Adidas Continental" loading="lazy">
-                <p class="product-name">Adidas Continental</p>
-                <p class="product-price">$250.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
-            <a href="#" class="product-item">
+                <div class="product-info">
+                    <h3 class="product-name">Adidas Continental</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$250.000</span>
+                        <span class="product-rating">★★★★☆</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
                 <img src="ArmourStorm.jpeg" alt="Armour Storm" loading="lazy">
-                <p class="product-name">Armour Storm</p>
-                <p class="product-price">$270.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
-            <a href="#" class="product-item">
+                <div class="product-info">
+                    <h3 class="product-name">Armour Storm</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$270.000</span>
+                        <span class="product-rating">★★★☆☆</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
                 <img src="ChanclasNike.jpeg" alt="Chanclas Nike" loading="lazy">
-                <p class="product-name">Chanclas Nike</p>
-                <p class="product-price">$120.000</p>
-                <button class="btn-add-to-cart">Añadir al carrito</button>
-            </a>
+                <div class="product-info">
+                    <h3 class="product-name">Chanclas Nike</h3>
+                    <div class="product-meta">
+                        <span class="product-price">$120.000</span>
+                        <span class="product-rating">★★★★☆</span>
+                    </div>
+                    <button class="btn-add-to-cart">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+        <div class="section-footer">
+            <a href="catalogo.html" class="btn btn-outline">Ver todos los productos</a>
         </div>
     </section>
 
     <!-- Sección sobre la tienda -->
     <section class="about-store">
-        <div class="about-store-img">
-            <img src="imagendelatienda.jpeg" alt="Imagen Tienda" loading="lazy">
+        <div class="about-container">
+            <div class="about-store-img">
+                <img src="imagendelatienda.jpeg" alt="Imagen Tienda" loading="lazy">
+            </div>
+            <div class="about-store-text">
+                <span class="section-tag">Nuestra Historia</span>
+                <h2>Calidad y Pasión por el Calzado</h2>
+                <p>Desde las calles de Cali hasta tu closet, en Suela C fusionamos estilo urbano, cultura local y máxima calidad. Cada par de zapatillas cuenta una historia de dedicación y amor por el diseño.</p>
+                
+                <ul class="about-features">
+                    <li><i class="fas fa-check-circle"></i> Materiales premium seleccionados</li>
+                    <li><i class="fas fa-check-circle"></i> Diseños exclusivos inspirados en Cali</li>
+                    <li><i class="fas fa-check-circle"></i> Comodidad que dura todo el día</li>
+                </ul>
+                
+                <a href="nosotros.html" class="btn btn-primary">Conoce más</a>
+            </div>
         </div>
-        <div class="about-store-text">
-            <h2>Bienvenidos a Suela C</h2>
-            <p>Desde la calle hasta tu closet, en Suela C combinamos estilo, cultura urbana y calidad. Nos especializamos en zapatillas con identidad caleña. Pisamos fuerte desde la Sucursal del Cielo.</p>
-            <p>¡Gracias por apoyarnos, el flow empieza por los pies!</p>
+    </section>
+
+    <!-- Sección de testimonios -->
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle">Experiencias reales con Suela C</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text">"Las zapatillas más cómodas que he usado. El estilo urbano caleño se nota en cada detalle."</p>
+                <div class="testimonial-author">
+                    <strong>Carlos M.</strong>
+                    <span>Cliente desde 2022</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★☆</div>
+                <p class="testimonial-text">"Excelente calidad y atención. Mis Nike 2000 F han durado más que cualquier otro par."</p>
+                <div class="testimonial-author">
+                    <strong>María F.</strong>
+                    <span>Cliente desde 2021</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-rating">★★★★★</div>
+                <p class="testimonial-text">"Compro regularmente en Suela C porque sé que siempre tendré productos originales y de calidad."</p>
+                <div class="testimonial-author">
+                    <strong>Andrés P.</strong>
+                    <span>Cliente frecuente</span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Sección del video -->
     <section class="store-video">
-        <h2>Conoce más sobre nosotros</h2>
+        <div class="section-header">
+            <h2>Nuestra Pasión en Movimiento</h2>
+            <p class="section-subtitle">Mira cómo creamos tus zapatillas favoritas</p>
+        </div>
         <div class="video-container">
-            <iframe width="100%" height="auto" src="Reel.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="auto" src="Reel.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-text">
+                <h3>Únete a nuestra comunidad</h3>
+                <p>Recibe ofertas exclusivas, nuevos lanzamientos y contenido especial directamente en tu correo.</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn btn-primary">Suscribirme</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-container">
-            <div class="footer-logo">
-                <span>Suela C</span>
+            <div class="footer-col footer-brand">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Suela C Logo">
+                    <span>Suela C</span>
+                </div>
+                <p>Zapatillas con esencia caleña desde 2020</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.x.com/" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
-            <ul class="footer-menu">
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Política de cookies</a></li>
-            </ul>
-            <div class="footer-contact">
-                <p style="color: #999;">Sucursal del estilo urbano caleño</p>
+            
+            <div class="footer-col">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="FAQ.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="envios.html">Envíos y Devoluciones</a></li>
+                    <li><a href="#">Guía de tallas</a></li>
+                    <li><a href="#">Métodos de pago</a></li>
+                    <li><a href="#">Rastrear pedido</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul class="footer-contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Cali, Colombia</li>
+                    <li><i class="fas fa-phone-alt"></i> +57 123 456 7890</li>
+                    <li><i class="fas fa-envelope"></i> hola@suelac.com</li>
+                    <li><i class="fas fa-clock"></i> Lunes a Sábado: 9am - 7pm</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2023 Suela C. Todos los derechos reservados.</p>
+                <ul class="footer-legal">
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Política de cookies</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
     <!-- Carrito Flotante -->
-    <div class="carrito-flotante">
-        <div class="carrito-icono" onclick="toggleCarrito()">
-            🛒
-            <span class="carrito-contador">0</span>
+    <div class="floating-cart">
+        <div class="cart-icon" onclick="toggleCarrito()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-counter">0</span>
         </div>
 
-        <div class="carrito-contenido">
-            <h3>Tu selección</h3>
-            <div class="carrito-items"></div>
-            <div class="carrito-total">
-                Total: $<span>0</span>
+        <div class="cart-content">
+            <h3>Tu Carrito</h3>
+            <div class="cart-items"></div>
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">$0</span>
+                </div>
+                <button class="btn btn-checkout">Finalizar Compra</button>
             </div>
-            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
         </div>
     </div>
 
     <!-- Botón volver arriba -->
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="scripts.js"></script>
 </body>
