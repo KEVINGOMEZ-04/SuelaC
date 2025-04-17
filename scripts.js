@@ -40,6 +40,15 @@ function eliminarDelCarrito(e) {
     actualizarCarrito();
     mostrarNotificacion('Producto eliminado');
 }
+
+// Función para añadir producto al carrito
+function añadirAlCarrito(nombre, precio) {
+    // Crear nuevo item
+    const nuevoItem = {
+        nombre: nombre,
+        precio: precio,
+        fecha: new Date().toISOString()
+    };
     
     // Añadir al carrito
     carrito.push(nuevoItem);
