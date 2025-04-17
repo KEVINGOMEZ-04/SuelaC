@@ -53,36 +53,42 @@
     <section class="best-sellers">
         <h2>Productos Más Vendidos</h2>
         <div class="product-slider">
-            <a href="#" class="product-item">
+            <div class="product-item">
                 <img src="Nike2000.jpeg" alt="Nike 2000 F" loading="lazy">
                 <p class="product-name">Nike 2000 F</p>
                 <p class="product-price">$320.000</p>
-            </a>
-            <a href="#" class="product-item">
+                <button class="btn-add-to-cart" data-name="Nike 2000 F" data-price="320000">Añadir al carrito</button>
+            </div>
+            <div class="product-item">
                 <img src="PumaNitro.jpeg" alt="Puma Nitro" loading="lazy">
                 <p class="product-name">Puma Nitro</p>
                 <p class="product-price">$280.000</p>
-            </a>
-            <a href="#" class="product-item">
+                <button class="btn-add-to-cart" data-name="Puma Nitro" data-price="280000">Añadir al carrito</button>
+            </div>
+            <div class="product-item">
                 <img src="AdidasYeezy.jpeg" alt="Adidas Yeezy" loading="lazy">
                 <p class="product-name">Adidas Yeezy</p>
                 <p class="product-price">$350.000</p>
-            </a>
-            <a href="#" class="product-item">
+                <button class="btn-add-to-cart" data-name="Adidas Yeezy" data-price="350000">Añadir al carrito</button>
+            </div>
+            <div class="product-item">
                 <img src="AdidasContinental.jpeg" alt="Adidas Continental" loading="lazy">
                 <p class="product-name">Adidas Continental</p>
                 <p class="product-price">$250.000</p>
-            </a>
-            <a href="#" class="product-item">
+                <button class="btn-add-to-cart" data-name="Adidas Continental" data-price="250000">Añadir al carrito</button>
+            </div>
+            <div class="product-item">
                 <img src="ArmourStorm.jpeg" alt="Armour Storm" loading="lazy">
                 <p class="product-name">Armour Storm</p>
                 <p class="product-price">$270.000</p>
-            </a>
-            <a href="#" class="product-item">
+                <button class="btn-add-to-cart" data-name="Armour Storm" data-price="270000">Añadir al carrito</button>
+            </div>
+            <div class="product-item">
                 <img src="ChanclasNike.jpeg" alt="Chanclas Nike" loading="lazy">
                 <p class="product-name">Chanclas Nike</p>
                 <p class="product-price">$120.000</p>
-            </a>
+                <button class="btn-add-to-cart" data-name="Chanclas Nike" data-price="120000">Añadir al carrito</button>
+            </div>
         </div>
     </section>
 
@@ -164,7 +170,7 @@
 
     <!-- Carrito Flotante -->
     <div class="carrito-flotante">
-        <div class="carrito-icono" onclick="toggleCarrito()">
+        <div class="carrito-icono">
             🛒
             <span class="carrito-contador">0</span>
         </div>
@@ -175,12 +181,12 @@
             <div class="carrito-total">
                 Total: $<span>0</span>
             </div>
-            <button class="btn-comprar" onclick="finalizarCompra()">💬 Completar pedido</button>
+            <button class="btn-comprar">💬 Completar pedido</button>
         </div>
     </div>
 
     <!-- Botón volver arriba -->
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top">↑</button>
 
     <script src="scripts.js"></script>
 </body>
