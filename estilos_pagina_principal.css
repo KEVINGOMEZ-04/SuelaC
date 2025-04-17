@@ -1,14 +1,14 @@
 /* Variables y reset */
 :root {
-    --primary-color: #1A1A2E; /* Azul oscuro del logo */
-    --secondary-color: #D72638; /* Rojo del logo */
-    --accent-color: #F5A623; /* Amarillo/naranja del logo */
+    --primary-color: #1A1A2E;
+    --secondary-color: #D72638;
+    --accent-color: #F5A623;
     --light-color: #FFFFFF;
     --dark-color: #0D0D1A;
     --text-color: #333333;
     --background-color: #F8F8F8;
     --border-color: #E1E1E1;
-    --navbar-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%); /* Degradado basado en el logo */
+    --navbar-gradient: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
 }
 
 * {
@@ -65,11 +65,6 @@ h1, h2, h3, .navbar-logo span, .footer-logo span {
 
 .navbar-logo img:hover {
     transform: scale(1.1) rotate(-5deg);
-}
-
-.navbar-logo span {
-    color: var(--light-color);
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
 .navbar-menu {
@@ -297,7 +292,6 @@ h1, h2, h3, .navbar-logo span, .footer-logo span {
     border: 1px solid var(--border-color);
     position: relative;
     padding: 15px;
-    text-decoration: none !important;
 }
 
 .product-item:hover {
@@ -323,7 +317,6 @@ h1, h2, h3, .navbar-logo span, .footer-logo span {
     color: var(--primary-color);
     margin: 15px 0 5px;
     transition: color 0.3s ease;
-    text-decoration: none !important;
 }
 
 .product-item:hover .product-name {
@@ -335,7 +328,28 @@ h1, h2, h3, .navbar-logo span, .footer-logo span {
     color: var(--secondary-color);
     font-weight: bold;
     margin: 5px 0;
-    text-decoration: none !important;
+}
+
+/* Botón Añadir al Carrito */
+.btn-add-to-cart {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.btn-add-to-cart:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* About Store */
@@ -409,7 +423,7 @@ h1, h2, h3, .navbar-logo span, .footer-logo span {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 10px;
@@ -454,10 +468,6 @@ footer {
 .footer-logo img {
     width: 50px;
     height: 50px;
-}
-
-.footer-logo span {
-    color: white;
 }
 
 .footer-content {
@@ -675,11 +685,6 @@ footer {
     animation: slideIn 0.4s ease;
 }
 
-@keyframes slideIn {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
 .carrito-contenido h3 {
     color: var(--primary-color);
     margin-bottom: 20px;
@@ -701,6 +706,32 @@ footer {
     padding: 12px 0;
     border-bottom: 1px solid var(--border-color);
     color: var(--text-color);
+}
+
+.carrito-item span {
+    flex: 1;
+}
+
+.eliminar-item {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.eliminar-item:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
 }
 
 .carrito-total {
@@ -734,7 +765,7 @@ footer {
     box-shadow: 0 5px 15px rgba(26, 26, 46, 0.4);
 }
 
-/* Botón volver arriba - Versión corregida */
+/* Botón volver arriba */
 .back-to-top {
     display: none;
     position: fixed;
@@ -751,12 +782,11 @@ footer {
     box-shadow: 0 5px 20px rgba(215, 38, 56, 0.4);
     transition: all 0.3s ease;
     z-index: 999;
-    /* Nuevas propiedades para centrar la flecha */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0; /* Elimina cualquier padding que pueda afectar */
-    line-height: 1; /* Asegura que no haya espacio extra */
+    padding: 0;
+    line-height: 1;
 }
 
 .back-to-top:hover {
@@ -764,14 +794,28 @@ footer {
     transform: scale(1.1);
 }
 
-/* Elimina la clase .mostrar ya que ahora usamos flex desde el inicio */
-.back-to-top.mostrar {
-    display: flex; /* Ya está definido arriba */
+/* Notificaciones */
+.notificacion {
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+    background: var(--secondary-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(215, 38, 56, 0.5);
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.notificacion.desvanecer {
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Responsive */
@@ -838,6 +882,9 @@ footer {
         flex-direction: column;
         gap: 30px;
     }
+    .carrito-contenido {
+        width: 300px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -865,7 +912,7 @@ footer {
         right: 20px;
     }
     .carrito-contenido {
-        width: 300px;
+        width: 280px;
     }
     .back-to-top {
         left: 20px;
@@ -874,81 +921,4 @@ footer {
         height: 50px;
         font-size: 20px;
     }
-}
-/* Notificaciones */
-.notificacion {
-    position: fixed;
-    bottom: 100px;
-    right: 40px;
-    background: var(--secondary-color);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(215, 38, 56, 0.5);
-    z-index: 1000;
-    animation: slideIn 0.3s ease;
-}
-
-@keyframes slideIn {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-.btn-add-to-cart {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-/*Carrito de compras*/
-.btn-add-to-cart:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-}
-
-.product-item {
-    padding-bottom: 20px;
-}
-
-.notificacion {
-    transition: opacity 0.3s ease;
-}
-/* Estilos para los items del carrito y botón de eliminar */
-.carrito-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-color);
-    position: relative;
-}
-
-.eliminar-item {
-    background: var(--secondary-color);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    margin-left: 10px;
-}
-
-.eliminar-item:hover {
-    background: var(--primary-color);
-    transform: scale(1.1);
 }
