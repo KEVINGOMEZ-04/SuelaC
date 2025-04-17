@@ -1,91 +1,188 @@
 // Variables globales
-let cartItems = [];
-let total = 0.0;
-
-// Referencias a elementos del DOM
-const cartIcon = document.getElementById("cart-icon");
-const cartContainer = document.getElementById("cart-container");
-const cartCount = document.getElementById("cart-count");
-const cartItemsContainer = document.getElementById("cart-items");
-const cartTotal = document.getElementById("cart-total");
-const checkoutBtn = document.getElementById("checkout-btn");
-
-// Carrito y funcionalidades globales
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let total = 0;
 
+// Función para actualizar el carrito en la interfaz
 function actualizarCarrito() {
-    cartCount.textContent = carrito.length;
-    cartItemsContainer.innerHTML = carrito.map(item => `
+    const contador = document.querySelector('.carrito-contador');
+    const itemsContainer = document.querySelector('.carrito-items');
+    const totalContainer = document.querySelector('.carrito-total span');
+    
+    // Actualizar contador
+    contador.textContent = carrito.length;
+    
+    // Actualizar items del carrito
+    itemsContainer.innerHTML = carrito.map(item => `
         <div class="carrito-item">
             <span>${item.nombre}</span>
             <span>$${item.precio.toLocaleString()}</span>
         </div>
     `).join('');
     
-    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
-    cartTotal.textContent = total.toLocaleString();
+    // Calcular y actualizar total
+    total = carrito.reduce((sum, item) => sum + item.precio, 0);
+    totalContainer.textContent = total.toLocaleString();
+    
+    // Guardar en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-function addToCart(nombre, precio) {
-    const talla = document.querySelector('.talla-item.selected')?.dataset.talla || 'Sin talla';
-    const color = document.querySelector('.color-btn.selected')?.dataset.color || 'Sin color';
+// Función para añadir producto al carrito
+function añadirAlCarrito(nombre, precio) {
+    // Crear nuevo item
+    const nuevoItem = {
+        nombre: nombre,
+        precio: precio,
+        fecha: new Date().toISOString()
+    };
     
-    carrito.push({
-        nombre: `${nombre} - Talla ${talla}, Color ${color}`,
-        precio: precio
-    });
+    // Añadir al carrito
+    carrito.push(nuevoItem);
     
+    // Actualizar interfaz
     actualizarCarrito();
+    
+    // Mostrar notificación
     mostrarNotificacion('¡Producto añadido!');
 }
 
+// Función para mostrar/ocultar carrito
 function toggleCarrito() {
-    cartContainer.classList.toggle('show');
-}
-
-function finalizarCompra() {
-    const pedido = carrito.map(item => `• ${item.nombre}: $${item.precio.toLocaleString()}`).join('\n');
-    const total = carrito.reduce((sum, item) => sum + item.precio, 0);
-    const codigo = `PEDIDO SUELA C\n${pedido}\n\nTOTAL: $${total.toLocaleString()}`;
+    const carritoContenido = document.querySelector('.carrito-contenido');
+    carritoContenido.classList.toggle('mostrar');
     
-    try {
-        navigator.clipboard.writeText(codigo);
-        window.open(`https://wa.me/573162859682?text=${encodeURIComponent(codigo)}`, '_blank');
-        carrito = [];
-        actualizarCarrito();
-    } catch (err) {
-        console.error('Error al copiar al portapapeles:', err);
-        // Fallback para navegadores que no soportan clipboard API
-        const textarea = document.createElement('textarea');
-        textarea.value = codigo;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        window.open(`https://wa.me/573162859682?text=${encodeURIComponent(codigo)}`, '_blank');
-        carrito = [];
-        actualizarCarrito();
+    // Cerrar al hacer clic fuera
+    if (carritoContenido.classList.contains('mostrar')) {
+        document.addEventListener('click', cerrarCarritoAlClicExterno);
+    } else {
+        document.removeEventListener('click', cerrarCarritoAlClicExterno);
     }
 }
 
-// Notificación Flotante
+// Función para cerrar carrito al hacer clic fuera
+function cerrarCarritoAlClicExterno(event) {
+    const carritoIcono = document.querySelector('.carrito-icono');
+    const carritoContenido = document.querySelector('.carrito-contenido');
+    
+    if (!carritoIcono.contains(event.target) && !carritoContenido.contains(event.target)) {
+        carritoContenido.classList.remove('mostrar');
+        document.removeEventListener('click', cerrarCarritoAlClicExterno);
+    }
+}
+
+// Función para finalizar compra
+function finalizarCompra() {
+    if (carrito.length === 0) {
+        mostrarNotificacion('Tu carrito está vacío');
+        return;
+    }
+    
+    // Crear mensaje para WhatsApp
+    const itemsTexto = carrito.map(item => 
+        `➤ ${item.nombre} - $${item.precio.toLocaleString()}`
+    ).join('\n');
+    
+    const mensaje = `¡Hola Suela C! 👟\n\nQuiero realizar el siguiente pedido:\n\n${itemsTexto}\n\nTotal: $${total.toLocaleString()}\n\nMi información:\n- Nombre: \n- Dirección: \n- Teléfono: `;
+    
+    // Abrir WhatsApp
+    window.open(`https://wa.me/573162859682?text=${encodeURIComponent(mensaje)}`, '_blank');
+    
+    // Vaciar carrito
+    carrito = [];
+    actualizarCarrito();
+    
+    // Mostrar confirmación
+    mostrarNotificacion('¡Pedido enviado!');
+}
+
+// Función para mostrar notificaciones
 function mostrarNotificacion(mensaje) {
     const notificacion = document.createElement('div');
     notificacion.className = 'notificacion';
     notificacion.textContent = mensaje;
-    
     document.body.appendChild(notificacion);
     
     setTimeout(() => {
-        notificacion.classList.add('fade-out');
-        setTimeout(() => {
-            notificacion.remove();
-        }, 300);
-    }, 2700);
+        notificacion.classList.add('desvanecer');
+        setTimeout(() => notificacion.remove(), 300);
+    }, 2500);
 }
 
-// Función para formatear el precio con separación de miles
+// Inicializar eventos al cargar el DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar carrito
+    actualizarCarrito();
+    
+    // Eventos para botones "Añadir al carrito"
+    document.querySelectorAll('.btn-add-to-cart').forEach(boton => {
+        boton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const nombre = this.getAttribute('data-name');
+            const precio = parseInt(this.getAttribute('data-price'));
+            
+            // Añadir al carrito
+            añadirAlCarrito(nombre, precio);
+            
+            // Animación de confirmación
+            this.textContent = '✓ Añadido';
+            this.style.backgroundColor = '#4CAF50';
+            
+            setTimeout(() => {
+                this.textContent = 'Añadir al carrito';
+                this.style.backgroundColor = '';
+            }, 2000);
+        });
+    });
+    
+    // Evento para el ícono del carrito
+    document.querySelector('.carrito-icono').addEventListener('click', toggleCarrito);
+    
+    // Evento para el botón de comprar
+    document.querySelector('.btn-comprar').addEventListener('click', finalizarCompra);
+    
+    // Botón volver arriba
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('mostrar');
+            } else {
+                backToTop.classList.remove('mostrar');
+            }
+        });
+    }
+    
+    // Menú hamburguesa
+    const hamburger = document.getElementById('hamburger-icon');
+    const navbarMenu = document.getElementById('navbar-menu');
+    
+    if (hamburger && navbarMenu) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbarMenu.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function() {
+            navbarMenu.classList.remove('active');
+        });
+        
+        // Prevenir que se cierre al hacer clic en el menú
+        navbarMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+});
+
+// Función para formatear precios
 function formatPrice(input) {
     let value = input.value.replace(/\D/g, '');
     if (value) {
@@ -99,18 +196,8 @@ function convertirPrecioANumero(precioFormateado) {
     return parseInt(precioFormateado.replace(/\D/g, ''), 10);
 }
 
-// Función para restablecer el catálogo a su estado inicial
-function resetearCatalogo() {
-    const productos = document.querySelectorAll('.producto');
-    productos.forEach(producto => {
-        producto.style.display = 'block';
-    });
-}
-
-// Función para aplicar los filtros
+// Función para aplicar filtros (mantenida de tu código original)
 function applyFilters() {
-    resetearCatalogo();
-
     const minPrice = convertirPrecioANumero(document.getElementById('min-precio').value);
     const maxPrice = convertirPrecioANumero(document.getElementById('max-precio').value);
     const selectedColors = Array.from(document.querySelectorAll('.filtro-color input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
@@ -120,43 +207,23 @@ function applyFilters() {
 
     productos.forEach(producto => {
         const precioProducto = convertirPrecioANumero(producto.querySelector('p').textContent);
-        const colores = producto.getAttribute('data-colores')?.split(',') || [];
-        const tallas = producto.getAttribute('data-tallas')?.split(',') || [];
+        const colores = producto.getAttribute('data-colores').split(',');
+        const tallas = producto.getAttribute('data-tallas').split(',');
 
         const precioValido = (isNaN(minPrice) || precioProducto >= minPrice) &&
                            (isNaN(maxPrice) || precioProducto <= maxPrice);
         const colorValido = selectedColors.length === 0 || selectedColors.some(color => colores.includes(color));
         const tallaValida = selectedSize === 'todos' || tallas.includes(selectedSize);
 
-        if (precioValido && colorValido && tallaValida) {
-            producto.style.display = 'block';
-        } else {
-            producto.style.display = 'none';
-        }
+        producto.style.display = (precioValido && colorValido && tallaValida) ? 'block' : 'none';
     });
 
     const noProductsMessage = document.getElementById('no-products-message');
     const visibleProducts = Array.from(productos).filter(producto => producto.style.display !== 'none');
-
-    if (visibleProducts.length === 0) {
-        noProductsMessage.style.display = 'flex';
-    } else {
-        noProductsMessage.style.display = 'none';
-    }
+    noProductsMessage.style.display = visibleProducts.length === 0 ? 'flex' : 'none';
 }
 
-// Función para reiniciar los filtros
-function resetFilters() {
-    document.getElementById('min-precio').value = '';
-    document.getElementById('max-precio').value = '';
-    document.querySelectorAll('.filtro-color input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    document.getElementById('select-talla').value = 'todos';
-    applyFilters();
-}
-
-// Función para organizar productos
+// Función para organizar productos (mantenida de tu código original)
 function organizarProductos(criterio) {
     const productosContainer = document.querySelector('.grid-productos');
     const productos = Array.from(productosContainer.querySelectorAll('.producto'));
@@ -176,8 +243,7 @@ function organizarProductos(criterio) {
         productos.sort((a, b) => obtenerPrecio(b) - obtenerPrecio(a));
     } else if (criterio === 'ofertas') {
         productos.forEach(producto => {
-            const esOferta = producto.getAttribute('data-oferta') === 'true';
-            producto.style.display = esOferta ? 'block' : 'none';
+            producto.style.display = producto.getAttribute('data-oferta') === 'true' ? 'block' : 'none';
         });
         return;
     } else if (criterio === 'mas-vendidos') {
@@ -187,68 +253,3 @@ function organizarProductos(criterio) {
     productosContainer.innerHTML = '';
     productos.forEach(producto => productosContainer.appendChild(producto));
 }
-
-// Menú hamburguesa
-document.addEventListener('DOMContentLoaded', function () {
-    const hamburger = document.getElementById('hamburger-icon');
-    const navbarMenu = document.getElementById('navbar-menu');
-
-    if (hamburger && navbarMenu) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navbarMenu.classList.toggle('active');
-        });
-
-        document.addEventListener('click', (event) => {
-            if (!navbarMenu.contains(event.target) && !hamburger.contains(event.target)) {
-                navbarMenu.classList.remove('active');
-            }
-        });
-    }
-});
-
-// Mostrar/ocultar filtros en móviles
-const mostrarFiltrosBtn = document.getElementById('mostrar-filtros-btn');
-if (mostrarFiltrosBtn) {
-    mostrarFiltrosBtn.addEventListener('click', () => {
-        const filtros = document.getElementById('filtros');
-        filtros.classList.toggle('active');
-    });
-}
-
-// Selección de color
-document.querySelectorAll('.color-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-    });
-});
-
-// Selección de talla
-document.querySelectorAll('.talla-btn:not(.agotado)').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.talla-btn').forEach(t => t.classList.remove('selected'));
-        this.classList.add('selected');
-    });
-});
-
-// Inicializar Carrito al cargar
-document.addEventListener('DOMContentLoaded', actualizarCarrito);
-
-// Scroll to top
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Mostrar/ocultar botón "volver arriba"
-window.addEventListener('scroll', function() {
-    const backToTop = document.querySelector('.back-to-top');
-    if (window.scrollY > 300) {
-        backToTop.style.display = 'flex';
-    } else {
-        backToTop.style.display = 'none';
-    }
-});
