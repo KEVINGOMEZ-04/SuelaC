@@ -15,13 +15,13 @@ function actualizarCarrito() {
     itemsContainer.innerHTML = carrito.map(item => `
         <div class="carrito-item">
             <span>${item.nombre}</span>
-            <span>$${item.precio.toLocaleString()}</span>
+            <span>$${(item.precio / 1000).toFixed(3)}</span>
         </div>
     `).join('');
     
     // Calcular y actualizar total
     total = carrito.reduce((sum, item) => sum + item.precio, 0);
-    totalContainer.textContent = total.toLocaleString();
+    totalContainer.textContent = (total / 1000).toFixed(3);
     
     // Guardar en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -79,10 +79,10 @@ function finalizarCompra() {
     
     // Crear mensaje para WhatsApp
     const itemsTexto = carrito.map(item => 
-        `➤ ${item.nombre} - $${item.precio.toLocaleString()}`
+        `➤ ${item.nombre} - $${(item.precio / 1000).toFixed(3)}`
     ).join('\n');
     
-    const mensaje = `¡Hola Suela C! 👟\n\nQuiero realizar el siguiente pedido:\n\n${itemsTexto}\n\nTotal: $${total.toLocaleString()}\n\nMi información:\n- Nombre: \n- Dirección: \n- Teléfono: `;
+    const mensaje = `¡Hola Suela C! 👟\n\nQuiero realizar el siguiente pedido:\n\n${itemsTexto}\n\nTotal: $${(total / 1000).toFixed(3)}\n\nMi información:\n- Nombre: \n- Dirección: \n- Teléfono: `;
     
     // Abrir WhatsApp
     window.open(`https://wa.me/573162859682?text=${encodeURIComponent(mensaje)}`, '_blank');
@@ -103,7 +103,7 @@ function mostrarNotificacion(mensaje) {
     document.body.appendChild(notificacion);
     
     setTimeout(() => {
-        notificacion.classList.add('desvanecer');
+        notificacion.style.opacity = '0';
         setTimeout(() => notificacion.remove(), 300);
     }, 2500);
 }
@@ -153,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 300) {
-                backToTop.classList.add('mostrar');
+                backToTop.style.display = 'flex';
             } else {
-                backToTop.classList.remove('mostrar');
+                backToTop.style.display = 'none';
             }
         });
     }
@@ -181,75 +181,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-// Función para formatear precios
-function formatPrice(input) {
-    let value = input.value.replace(/\D/g, '');
-    if (value) {
-        value = Number(value).toLocaleString('es-CO');
-    }
-    input.value = value;
-}
-
-// Función para convertir precios formateados a números
-function convertirPrecioANumero(precioFormateado) {
-    return parseInt(precioFormateado.replace(/\D/g, ''), 10);
-}
-
-// Función para aplicar filtros (mantenida de tu código original)
-function applyFilters() {
-    const minPrice = convertirPrecioANumero(document.getElementById('min-precio').value);
-    const maxPrice = convertirPrecioANumero(document.getElementById('max-precio').value);
-    const selectedColors = Array.from(document.querySelectorAll('.filtro-color input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
-    const selectedSize = document.getElementById('select-talla').value;
-
-    const productos = document.querySelectorAll('.producto');
-
-    productos.forEach(producto => {
-        const precioProducto = convertirPrecioANumero(producto.querySelector('p').textContent);
-        const colores = producto.getAttribute('data-colores').split(',');
-        const tallas = producto.getAttribute('data-tallas').split(',');
-
-        const precioValido = (isNaN(minPrice) || precioProducto >= minPrice) &&
-                           (isNaN(maxPrice) || precioProducto <= maxPrice);
-        const colorValido = selectedColors.length === 0 || selectedColors.some(color => colores.includes(color));
-        const tallaValida = selectedSize === 'todos' || tallas.includes(selectedSize);
-
-        producto.style.display = (precioValido && colorValido && tallaValida) ? 'block' : 'none';
-    });
-
-    const noProductsMessage = document.getElementById('no-products-message');
-    const visibleProducts = Array.from(productos).filter(producto => producto.style.display !== 'none');
-    noProductsMessage.style.display = visibleProducts.length === 0 ? 'flex' : 'none';
-}
-
-// Función para organizar productos (mantenida de tu código original)
-function organizarProductos(criterio) {
-    const productosContainer = document.querySelector('.grid-productos');
-    const productos = Array.from(productosContainer.querySelectorAll('.producto'));
-
-    const obtenerPrecio = (producto) => {
-        const precioTexto = producto.querySelector('p').textContent.replace(/\D/g, '');
-        return parseInt(precioTexto, 10);
-    };
-
-    const obtenerVentas = (producto) => {
-        return parseInt(producto.getAttribute('data-ventas'), 10) || 0;
-    };
-
-    if (criterio === 'menor-mayor') {
-        productos.sort((a, b) => obtenerPrecio(a) - obtenerPrecio(b));
-    } else if (criterio === 'mayor-menor') {
-        productos.sort((a, b) => obtenerPrecio(b) - obtenerPrecio(a));
-    } else if (criterio === 'ofertas') {
-        productos.forEach(producto => {
-            producto.style.display = producto.getAttribute('data-oferta') === 'true' ? 'block' : 'none';
-        });
-        return;
-    } else if (criterio === 'mas-vendidos') {
-        productos.sort((a, b) => obtenerVentas(b) - obtenerVentas(a));
-    }
-
-    productosContainer.innerHTML = '';
-    productos.forEach(producto => productosContainer.appendChild(producto));
-}
