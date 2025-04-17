@@ -12,10 +12,11 @@ function actualizarCarrito() {
     contador.textContent = carrito.length;
     
     // Actualizar items del carrito
-    itemsContainer.innerHTML = carrito.map(item => `
+    itemsContainer.innerHTML = carrito.map((item, index) => `
         <div class="carrito-item">
             <span>${item.nombre}</span>
             <span>$${(item.precio / 1000).toFixed(3)}</span>
+            <button class="eliminar-item" data-index="${index}">×</button>
         </div>
     `).join('');
     
@@ -25,16 +26,20 @@ function actualizarCarrito() {
     
     // Guardar en localStorage
     localStorage.setItem('carrito', JSON.stringify(carrito));
+    
+    // Asignar eventos a los botones de eliminar
+    document.querySelectorAll('.eliminar-item').forEach(btn => {
+        btn.addEventListener('click', eliminarDelCarrito);
+    });
 }
 
-// Función para añadir producto al carrito
-function añadirAlCarrito(nombre, precio) {
-    // Crear nuevo item
-    const nuevoItem = {
-        nombre: nombre,
-        precio: precio,
-        fecha: new Date().toISOString()
-    };
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(e) {
+    const index = parseInt(e.target.getAttribute('data-index'));
+    carrito.splice(index, 1);
+    actualizarCarrito();
+    mostrarNotificacion('Producto eliminado');
+}
     
     // Añadir al carrito
     carrito.push(nuevoItem);
