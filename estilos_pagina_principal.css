@@ -920,3 +920,35 @@ footer {
 .notificacion {
     transition: opacity 0.3s ease;
 }
+/* Estilos para los items del carrito y botón de eliminar */
+.carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    position: relative;
+}
+
+.eliminar-item {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+}
+
+.eliminar-item:hover {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
