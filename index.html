@@ -100,7 +100,10 @@
     <section class="store-video">
         <h2>Conoce más sobre nosotros</h2>
         <div class="video-container">
-            <iframe width="100%" height="auto" src="Reel.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <video controls playsinline>
+                <source src="Reel.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
         </div>
     </section>
 
@@ -158,11 +161,14 @@
 
     <div class="carrito-flotante">
         <div class="carrito-icono">
-            🛒
+            <i class="fas fa-shopping-cart"></i>
             <span class="carrito-contador">0</span>
         </div>
         <div class="carrito-contenido">
-            <h3>Tu selección</h3>
+            <div class="carrito-header">
+                <h3>Tu Carrito</h3>
+                <button class="btn-cerrar-carrito"><i class="fas fa-times"></i></button>
+            </div>
             <div class="carrito-items"></div>
             <div class="resumen-compra">
                 <div class="resumen-linea">
@@ -178,12 +184,16 @@
                     <span>$<span class="total-final">0</span></span>
                 </div>
             </div>
-            <button class="btn-vaciar">Vaciar Carrito</button>
-            <button class="btn-comprar">💬 Completar pedido</button>
+            <button class="btn-comprar">
+                <i class="fab fa-whatsapp"></i> Completar Pedido
+            </button>
+            <button class="btn-vaciar">
+                <i class="fas fa-trash-alt"></i> Vaciar Carrito
+            </button>
         </div>
     </div>
 
-    <button class="back-to-top">↑</button>
+    <button class="back-to-top"><i class="fas fa-arrow-up"></i></button>
 
     <script src="scripts.js"></script>
 </body>
