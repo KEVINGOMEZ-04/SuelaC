@@ -11,14 +11,11 @@
     <link rel="icon" href="logo.png">
 </head>
 <body>
-
-    <!-- Navbar -->
     <header class="navbar">
         <div class="navbar-logo">
             <img src="logo.png" alt="Logo de Suela C">
             <span>Suela C</span>
         </div>
-
         <ul class="navbar-menu" id="navbar-menu">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="catalogo.html">Catálogo</a></li>
@@ -32,7 +29,6 @@
                 <a href="https://www.x.com/"><i class="fab fa-twitter"></i></a>
             </li>
         </ul>
-
         <div class="navbar-hamburger" id="hamburger-icon">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -40,7 +36,6 @@
         </div>
     </header>
 
-    <!-- Banner -->
     <section class="banner">
         <div class="banner-content">
             <h1>Bienvenido a Suela C</h1>
@@ -49,7 +44,6 @@
         </div>
     </section>
 
-    <!-- Productos más vendidos -->
     <section class="best-sellers">
         <h2>Productos Más Vendidos</h2>
         <div class="product-slider">
@@ -63,7 +57,7 @@
                 <img src="PumaNitro.jpeg" alt="Puma Nitro" loading="lazy">
                 <p class="product-name">Puma Nitro</p>
                 <p class="product-price">$280.000</p>
-                <button class="btn-add-to-cart" data-name="Puma Nitro" data-price="280000">Añadir al carrito</button>
+                <button class="btn-add-to-cart" data-name="Puma Nitro" data-price="280000" data-oferta>Añadir al carrito (Oferta)</button>
             </div>
             <div class="product-item">
                 <img src="AdidasYeezy.jpeg" alt="Adidas Yeezy" loading="lazy">
@@ -81,7 +75,7 @@
                 <img src="ArmourStorm.jpeg" alt="Armour Storm" loading="lazy">
                 <p class="product-name">Armour Storm</p>
                 <p class="product-price">$270.000</p>
-                <button class="btn-add-to-cart" data-name="Armour Storm" data-price="270000">Añadir al carrito</button>
+                <button class="btn-add-to-cart" data-name="Armour Storm" data-price="270000" data-oferta>Añadir al carrito (Oferta)</button>
             </div>
             <div class="product-item">
                 <img src="ChanclasNike.jpeg" alt="Chanclas Nike" loading="lazy">
@@ -92,7 +86,6 @@
         </div>
     </section>
 
-    <!-- Sección sobre la tienda -->
     <section class="about-store">
         <div class="about-store-img">
             <img src="imagendelatienda.jpeg" alt="Imagen Tienda" loading="lazy">
@@ -104,7 +97,6 @@
         </div>
     </section>
 
-    <!-- Sección del video -->
     <section class="store-video">
         <h2>Conoce más sobre nosotros</h2>
         <div class="video-container">
@@ -112,7 +104,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-logo">
@@ -145,8 +136,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Sección de unirse a la comunidad -->
         <div class="community-section">
             <div class="community-content">
                 <h3>Únete a nuestra comunidad</h3>
@@ -162,30 +151,38 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2023 Suela C. Todos los derechos reservados. | Sucursal del estilo urbano caleño</p>
         </div>
     </footer>
 
-    <!-- Carrito Flotante -->
     <div class="carrito-flotante">
         <div class="carrito-icono">
             🛒
             <span class="carrito-contador">0</span>
         </div>
-
         <div class="carrito-contenido">
             <h3>Tu selección</h3>
             <div class="carrito-items"></div>
-            <div class="carrito-total">
-                Total: $<span>0</span>
+            <div class="resumen-compra">
+                <div class="resumen-linea">
+                    <span>Subtotal:</span>
+                    <span>$<span class="subtotal">0</span></span>
+                </div>
+                <div class="resumen-linea">
+                    <span>Envío:</span>
+                    <span>$<span class="envio">0</span></span>
+                </div>
+                <div class="resumen-linea total">
+                    <span>Total:</span>
+                    <span>$<span class="total-final">0</span></span>
+                </div>
             </div>
+            <button class="btn-vaciar">Vaciar Carrito</button>
             <button class="btn-comprar">💬 Completar pedido</button>
         </div>
     </div>
 
-    <!-- Botón volver arriba -->
     <button class="back-to-top">↑</button>
 
     <script src="scripts.js"></script>
