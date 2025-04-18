@@ -158,8 +158,11 @@ function toggleCarrito() {
 function cerrarCarritoAlClicExterno(event) {
     const carritoIcono = document.querySelector('.carrito-icono');
     const carritoContenido = document.querySelector('.carrito-contenido');
+    const esClicEnCantidad = event.target.closest('.cantidad-control');
     
-    if (!carritoIcono.contains(event.target) && !carritoContenido.contains(event.target)) {
+    if (!carritoIcono.contains(event.target) && 
+        !carritoContenido.contains(event.target) &&
+        !esClicEnCantidad) {
         carritoContenido.classList.remove('mostrar');
         document.removeEventListener('click', cerrarCarritoAlClicExterno);
     }
@@ -239,6 +242,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Evento para vaciar carrito
     document.querySelector('.btn-vaciar').addEventListener('click', vaciarCarrito);
+    
+    // Evento para cerrar carrito
+    document.querySelector('.btn-cerrar-carrito').addEventListener('click', () => {
+        document.querySelector('.carrito-contenido').classList.remove('mostrar');
+    });
     
     // Botón volver arriba
     const backToTop = document.querySelector('.back-to-top');
