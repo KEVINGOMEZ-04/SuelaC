@@ -1039,3 +1039,30 @@ footer {
         border-radius: 0;
     }
 }
+/* Alineación izquierda del contenido en el banner */
+.banner-content.left-aligned {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+}
+
+/* Logo dentro del banner */
+.banner-logo {
+    max-width: 180px;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.6));
+}
+
+/* Contenedor del texto */
+.texto-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
