@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Suela C - Zapatillas con estilo urbano desde Cali">
     <title>Suela C</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Bebas+Neue&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./estilos_pagina_principal.css">
     <link rel="icon" href="logo.png">
@@ -45,7 +45,6 @@
             </div>
         </div>
     </section>
-    
 
     <section class="best-sellers">
         <h2>Productos Más Vendidos</h2>
@@ -54,37 +53,31 @@
                 <img src="Nike2000.jpeg" alt="Nike 2000 F" loading="lazy">
                 <p class="product-name">Nike 2000 F</p>
                 <p class="product-price">$320.000</p>
-                <button class="btn-add-to-cart" data-name="Nike 2000 F" data-price="320000">Añadir al carrito</button>
             </div>
             <div class="product-item">
                 <img src="PumaNitro.jpeg" alt="Puma Nitro" loading="lazy">
                 <p class="product-name">Puma Nitro</p>
                 <p class="product-price">$280.000</p>
-                <button class="btn-add-to-cart" data-name="Puma Nitro" data-price="280000" data-oferta>Añadir al carrito (Oferta)</button>
             </div>
             <div class="product-item">
                 <img src="AdidasYeezy.jpeg" alt="Adidas Yeezy" loading="lazy">
                 <p class="product-name">Adidas Yeezy</p>
                 <p class="product-price">$350.000</p>
-                <button class="btn-add-to-cart" data-name="Adidas Yeezy" data-price="350000">Añadir al carrito</button>
             </div>
             <div class="product-item">
                 <img src="AdidasContinental.jpeg" alt="Adidas Continental" loading="lazy">
                 <p class="product-name">Adidas Continental</p>
                 <p class="product-price">$250.000</p>
-                <button class="btn-add-to-cart" data-name="Adidas Continental" data-price="250000">Añadir al carrito</button>
             </div>
             <div class="product-item">
                 <img src="ArmourStorm.jpeg" alt="Armour Storm" loading="lazy">
                 <p class="product-name">Armour Storm</p>
                 <p class="product-price">$270.000</p>
-                <button class="btn-add-to-cart" data-name="Armour Storm" data-price="270000" data-oferta>Añadir al carrito (Oferta)</button>
             </div>
             <div class="product-item">
                 <img src="ChanclasNike.jpeg" alt="Chanclas Nike" loading="lazy">
                 <p class="product-name">Chanclas Nike</p>
                 <p class="product-price">$120.000</p>
-                <button class="btn-add-to-cart" data-name="Chanclas Nike" data-price="120000">Añadir al carrito</button>
             </div>
         </div>
     </section>
@@ -169,29 +162,32 @@
         </div>
         <div class="carrito-contenido">
             <div class="carrito-header">
-                <h3>Tu Carrito</h3>
+                <h3>Tu Carrito <span class="items-count">(0 items)</span></h3>
                 <button class="btn-cerrar-carrito"><i class="fas fa-times"></i></button>
             </div>
-            <div class="carrito-items"></div>
+            <div class="carrito-items">
+                <div class="carrito-vacio">
+                    <i class="fas fa-shopping-bag"></i>
+                    <p>Tu carrito está vacío</p>
+                </div>
+            </div>
             <div class="resumen-compra">
-                <div class="resumen-linea">
+                <div class="resumen-linea subtotal">
                     <span>Subtotal:</span>
                     <span>$<span class="subtotal">0</span></span>
                 </div>
-                <div class="resumen-linea">
+                <div class="resumen-linea envio">
                     <span>Envío:</span>
-                    <span>$<span class="envio">0</span></span>
+                    <span>Calculado al finalizar</span>
                 </div>
                 <div class="resumen-linea total">
                     <span>Total:</span>
                     <span>$<span class="total-final">0</span></span>
                 </div>
             </div>
+            <p class="mensaje-envio">El costo de envío varía según tu ubicación</p>
             <button class="btn-comprar">
                 <i class="fab fa-whatsapp"></i> Completar Pedido
-            </button>
-            <button class="btn-vaciar">
-                <i class="fas fa-trash-alt"></i> Vaciar Carrito
             </button>
         </div>
     </div>
